@@ -4,16 +4,16 @@
 
 ## users テーブル
 
-| Column             | Type       | Options                         |
-| ------------------ | ---------- | ------------------------        |
-| nickname           | string     | null: false,                    |
-| email              | string     | null: false, unique :true       |
-| encrypted_password | string     | null: false,                    |
-| family_name        | string     | null: false, format: Full-width |
-| first_name         | string     | null: false, format: Full-width |
-| family_name_kana   | string     | null: false, format: カタカナ     |
-| first_name_kana    | string     | null: false, format: カタカナ     |
-| birthday           | date       | null: false                     |
+| Column             | Type       | Options                    |
+| ------------------ | ---------- | ------------------------   |
+| nickname           | string     | null: false                |
+| email              | string     | null: false, unique :true  |
+| encrypted_password | string     | null: false                |
+| family_name        | string     | null: false                |
+| first_name         | string     | null: false                |
+| family_name_kana   | string     | null: false                |
+| first_name_kana    | string     | null: false                |
+| birthday           | date       | null: false                |
 
 ’
 deviceのgemを使用
@@ -23,6 +23,7 @@ deviceのgemを使用
 
 - has_many :items
 - has_many :purchases
+
 
 ## items テーブル
 
@@ -37,13 +38,13 @@ deviceのgemを使用
 | shipping_id   | integer    | null: false                    |
 | price         | integer    | null: false                    |
 | user          | references | null: false, foreign_key: true |
+| purchase      | references | null: false, foreign_key: true |
 
 
 ### Association
 
 - belongs_to :user
-- has_one    :purchase
-- has_one    :address
+- belongs_to :purchase
 
 
 ## addresses テーブル
@@ -55,23 +56,23 @@ deviceのgemを使用
 | number        | string     | null: false                    |
 | building      | string     |                                |
 | phone_number  | string     | null: false                    |
-| item          | references | null: false, foreign_key: true |
+| purchase      | references | null: false, foreign_key: true |
 
 
 ### Association
-- belongs_to :item
+- belongs_to :purchase
 
 
 ## purchases テーブル
 | Column        | Type       | Options                        |
 | ------------  | ---------- | ------------------------------ |
 | user          | references | null: false, foreign_key: true |
-| item          | references | null: false, foreign_key: true |
 
 
 ### Association
 - belongs_to :user
-- belongs_to :item
+- has_one    :item
+- has_one    :address
 
 
 ### Active Hash
