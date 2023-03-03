@@ -7,7 +7,7 @@
 | Column             | Type       | Options                         |
 | ------------------ | ---------- | ------------------------        |
 | nickname           | string     | null: false,                    |
-| email              | string     | null: false, unique             |
+| email              | string     | null: false, unique :true       |
 | encrypted_password | string     | null: false,                    |
 | family_name        | string     | null: false, format: Full-width |
 | first_name         | string     | null: false, format: Full-width |
@@ -26,21 +26,55 @@ deviceのgemを使用
 
 ## items テーブル
 
-| Column   | Type       | Options                        |
-| -------- | ---------- | ------------------------------ |
-| title    | string     | null: false                    |
-| text     | text       | null: false                    |
-| category | set        |                                |
-| status   | set        |                                |
-| charge   | set        |                                |
-| sender   | set        |                                |
-| shipping | set        |                                |
-| price    | intger     | null: false, foreign_key: true |
-| sold_out | Boolean    |                                |
-| user     | references | null: false, foreign_key: true |
-| buyer    | references | null: false, foreign_key: true |
+| Column        | Type       | Options                        |
+| ------------- | ---------- | ------------------------------ |
+| title         | string     | null: false                    |
+| text          | text       | null: false                    |
+| category_id   | integer    | null: false                    |
+| status_id     | integer    | null: false                    |
+| charge_id     | integer    | null: false                    |
+| prefecture_id | integer    | null: false                    |
+| shipping_id   | integer    | null: false                    |
+| price         | integer    | null: false                    |
+| user          | references | null: false, foreign_key: true |
 
-### Set
+
+### Association
+
+- belongs_to :user
+- has_one    :purchase
+- has_one    :address
+
+
+## addresses テーブル
+| Column        | Type       | Options                        |
+| ------------  | ---------- | ------------------------------ |
+| postal_code   | string     | null: false                    |
+| prefecture_id | integer    | null: false                    |
+| city          | string     | null: false                    |
+| number        | string     | null: false                    |
+| building      | string     |                                |
+| phone_number  | string     | null: false                    |
+| item          | references | null: false, foreign_key: true |
+
+
+### Association
+- belongs_to :item
+
+
+## purchases テーブル
+| Column        | Type       | Options                        |
+| ------------  | ---------- | ------------------------------ |
+| user          | references | null: false, foreign_key: true |
+| item          | references | null: false, foreign_key: true |
+
+
+### Association
+- belongs_to :user
+- belongs_to :item
+
+
+### Active Hash
 
 | category          |
 | ----------------- |
@@ -69,7 +103,7 @@ deviceのgemを使用
 | 着払い(購入者負担)    |
 | 送料込み(出品者負担)  |
 
-| sender    |
+| prefecture    |
 | -------   |
 | 47都道府県 |
 
@@ -78,25 +112,3 @@ deviceのgemを使用
 | 1~2日で発送 |
 | 2~3日で発送 |
 | 4~7日で発送 |
-
-### Association
-
-- belongs_to :user
-- belongs_to :purchase
-
-
-## purchases テーブル
-| Column       | Type       | Options                        |
-| -----------  | ---------- | ------------------------------ |
-| postal_code  | integer    |null: false                     |
-| prefecture   | string     |null: false                     |
-| city         | string     |null: false                     |
-| address      | string     |null: false                     |
-| building     | string     |                                |
-| phone_number | integer    |null: false                     |
-| item         | references | null: false, foreign_key: true |
-| user         | references | null: false, foreign_key: true |
-
-### Association
-- belongs_to :user
-- belongs_to :item
