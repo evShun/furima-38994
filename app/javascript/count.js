@@ -8,7 +8,6 @@ function post (){
     addTaxDom.innerHTML = add_tag
     const TaxDom = document.getElementById("profit");
     TaxDom.innerHTML = benefit
-
   });
 };
  

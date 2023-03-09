@@ -15,7 +15,7 @@ class Item < ApplicationRecord
   validates :charge_id     , presence: true ,numericality: { other_than: 0 ,message: "can't be blank"}
   validates :prefecture_id , presence: true ,numericality: { other_than: 0 ,message: "can't be blank"}
   validates :shipping_id   , presence: true ,numericality: { other_than: 0 ,message: "can't be blank"}
-  validates :price         , presence: true # { with:/\A[/d]+\z/ ,message: '半角を使用してください'} jconに書く？
+  validates :price         , presence: true ,numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }
   validates :image         , presence: true
   
 
