@@ -31,25 +31,54 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Text can't be blank")
       end
 
+      it 'textが空では登録できない' do
+        @item.text = ''
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Text can't be blank")
+      end
       it 'category_idが0では登録できない' do
         @item.category_id = 0
         @item.valid?
         expect(@item.errors.full_messages).to include("Category can't be blank")
+      end
+
+      it 'status_idが空では登録できない' do
+        @item.status_id = ''
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Status can't be blank")
       end
       it 'status_idが0では登録できない' do
         @item.status_id = 0
         @item.valid?
         expect(@item.errors.full_messages).to include("Status can't be blank")
       end
+
+      it 'charge_idが空では登録できない' do
+        @item.charge_id = ''
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Charge can't be blank")
+      end
       it 'charge_idが0では登録できない' do
         @item.charge_id = 0
         @item.valid?
         expect(@item.errors.full_messages).to include("Charge can't be blank")
       end
+
+      it 'prefecture_idが空では登録できない' do
+        @item.prefecture_id = ''
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Prefecture can't be blank")
+      end
       it 'prefecture_idが0では登録できない' do
         @item.prefecture_id = 0
         @item.valid?
         expect(@item.errors.full_messages).to include("Prefecture can't be blank")
+      end
+
+      it 'shipping_idが空では登録できない' do
+        @item.shipping_id = ''
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Shipping can't be blank")
       end
       it 'shipping_idが0では登録できない' do
         @item.shipping_id = 0
