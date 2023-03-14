@@ -41,8 +41,8 @@ class ItemsController < ApplicationController
       @item.destroy
     end
     redirect_to root_path
-    end
   end
+end
 
   private
 
@@ -54,4 +54,3 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
-end
