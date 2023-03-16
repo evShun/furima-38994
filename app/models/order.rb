@@ -1,12 +1,13 @@
 class Order
   include ActiveModel::Model
-  attr_accessor :postal_code,:prefecture_id,:city,:number,:building,:phone_number,:purchase,:user_id,:item_id
+  attr_accessor :postal_code,:prefecture_id,:city,:number,:building,:phone_number,:purchase,:user_id,:item_id,:token
 
   validates :postal_code   , presence: true
   validates :prefecture_id , presence: true
   validates :city          , presence: true
   validates :number        , presence: true
   validates :phone_number  , presence: true
+  validates :token         , presence: true
 
 
   def save

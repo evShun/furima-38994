@@ -6,8 +6,8 @@ class OrdersController < ApplicationController
   
   def create
     @item = Item.find(params[:item_id])
-    @order = Order.new(set_params)
     binding.pry
+    @order = Order.new(set_params)
     if @order.valid?
       @order.save
       redirect_to root_path
@@ -19,7 +19,7 @@ end
 
   private
   def set_params
-    params.permit(:postal_code,:prefecture_id,:city,:number,:building,:phone_number,:purchase,:item_id).merge(user_id: current_user.id, )
+    params.permit(:postal_code,:prefecture_id,:city,:number,:building,:phone_number,:purchase,:item_id).merge(user_id: current_user.id, token: params[:token] )
   end
 
 
