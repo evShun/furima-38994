@@ -6,9 +6,6 @@ class OrdersController < ApplicationController
 
   def index
     @order = Order.new
-    unless user_signed_in? && current_user.id != @item.user.id
-      redirect_to root_path
-    end
   end
   
   def create

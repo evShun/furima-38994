@@ -12,6 +12,10 @@ describe '商品購入' do
     it '空欄を埋めると購入できる' do
       expect(@order).to be_valid
     end
+    it 'buildingのみ空欄でも購入できる' do
+      @order.building = ''
+      expect(@order).to be_valid
+    end
   end
 
 
@@ -54,6 +58,16 @@ describe '商品購入' do
       @order.phone_number = ''
       @order.valid?
       expect(@order.errors.full_messages).to include("Phone number can't be blank")
+    end
+    it 'phone_numberが9桁以下では購入できない' do
+      @order.phone_number = '123456789'
+      @order.valid?
+      expect(@order.errors.full_messages).to include("Phone number is too short (minimum is 10 characters)")
+    end
+    it 'phone_numberが12桁以上では購入できない' do
+      @order.phone_number = '123456789012'
+      @order.valid?
+      expect(@order.errors.full_messages).to include("Phone number is too long (maximum is 11 characters)")
     end
     it 'phone_numberが全角では購入できない' do
       @order.phone_number = '０１２３４５６７８９'
