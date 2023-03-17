@@ -2,8 +2,6 @@
 
 <div class='transaction-contents'>
 
-    <%# エラーメッセージ%>
-    <%# <%= render 'shared/error_messages', model: f.object %>
 
   <div class='transaction-main'>
     <h1 class='transaction-title-text'>
@@ -35,7 +33,10 @@
     </div>
     <%# /支払額の表示 %>
 
-    <%= form_with url: item_orders_path(@item.id), method: :post, id: 'charge-form', class: 'transaction-form-wrap',local: true do |f| %>
+    <%= form_with model: @order ,url: item_orders_path(@item.id), method: :post, id: 'charge-form', class: 'transaction-form-wrap',local: true do |f| %>
+    
+    <%# エラーメッセージ%>
+    <%= render 'shared/error_messages', model: f.object %>
     <%# カード情報の入力 %>
     <div class='credit-card-form'>
       <h1 class='info-input-haedline'>
