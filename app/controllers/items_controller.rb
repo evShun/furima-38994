@@ -23,9 +23,10 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    unless user_signed_in? && current_user.id == @item.user.id
+    unless user_signed_in? && current_user.id == @item.user.id && @item.purchase.blank?
       redirect_to action: :index
     end
+    
   end
 
   def update
@@ -41,7 +42,6 @@ class ItemsController < ApplicationController
       @item.destroy
     end
     redirect_to root_path
-    end
   end
 
   private
