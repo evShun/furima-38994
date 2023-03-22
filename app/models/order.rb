@@ -4,7 +4,7 @@ class Order
 
   with_options presence: true do
    validates :postal_code   ,format: { with:/\A[0-9]{3}-[0-9]{4}\z/,message: '000-0000の形式に変更してください'}
-   validates :prefecture_id ,numericality: { other_than: 0, message: "can't be blank" }
+   validates :prefecture_id ,numericality: { other_than: 0, message: "を入力してください" }
    validates :city
    validates :number
    validates :phone_number  ,format: { with:/\A[0-9]+\z/, message: '半角で入力してください'} ,length:{ minimum: 10, maximum: 11 }
