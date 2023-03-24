@@ -11,11 +11,11 @@ class Item < ApplicationRecord
 
   validates :title	       , presence: true , length: { maximum: 40 }
   validates :text          , presence: true
-  validates :category_id   , presence: true , numericality: { other_than: 0 ,message: "can't be blank"}
-  validates :status_id     , presence: true , numericality: { other_than: 0 ,message: "can't be blank"}
-  validates :charge_id     , presence: true , numericality: { other_than: 0 ,message: "can't be blank"}
-  validates :prefecture_id , presence: true , numericality: { other_than: 0 ,message: "can't be blank"}
-  validates :shipping_id   , presence: true , numericality: { other_than: 0 ,message: "can't be blank"}
+  validates :category_id   , presence: true , numericality: { other_than: 0 ,message: "を入力してください"}
+  validates :status_id     , presence: true , numericality: { other_than: 0 ,message: "を入力してください"}
+  validates :charge_id     , presence: true , numericality: { other_than: 0 ,message: "を入力してください"}
+  validates :prefecture_id , presence: true , numericality: { other_than: 0 ,message: "を入力してください"}
+  validates :shipping_id   , presence: true , numericality: { other_than: 0 ,message: "を入力してください"}
   validates :price         , presence: true , numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }
   validates :image         , presence: true
   
