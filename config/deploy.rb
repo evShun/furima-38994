@@ -3,7 +3,7 @@ lock "~> 3.17.2"
 
 set :application, "furima-38994"
 
-set :repo_url, "git@example.com:evshun/furima-38994.git"
+set :repo_url, "git@github.com:evShun/furima-38994.git"
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
@@ -59,5 +59,3 @@ namespace :deploy do
     invoke 'unicorn:restart'
   end
 end
-
-server '18.177.29.233', user: 'ec2-user', roles: %w{app db web}
